@@ -1,0 +1,17 @@
+<ion-view title="习惯">
+    <!--头部右边按钮-->
+    <ion-nav-buttons side="right">
+      <button class="button" ng-click="editComplete()" style="border: 0;font-size: 16px;">完成</button>
+      
+    </ion-nav-buttons>
+	<!--内容区域-->
+	<ion-content style="background: #F2F1EF;">
+		<div class="list" ng-repeat="data in hibatList track by $index" style="margin: 10px 0;">
+		  <a class="item item-icon-left item-icon-right" href="#" style="padding: 30px 60px;">
+		    <i class="icon ion-android-remove-circle" style="color: #FF0000;" ng-click="delHabit()" data-del="{{data.name}}"></i>
+		    	{{data.name}}
+		    <i class="icon ion-android-menu" style="color: grey;"></i>
+		  </a>
+		</div>
+	</ion-content>
+</ion-view>

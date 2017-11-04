@@ -1,0 +1,27 @@
+<ion-view title="发现">
+    <!--头部右边按钮-->
+    <ion-nav-buttons side="right">
+      <button class="button" ng-click="editComplete()" style="border: 0;font-size: 16px;">完成</button>
+      
+    </ion-nav-buttons>
+	<!--内容区域-->
+	<ion-content style="background: #F2F1EF;">
+		<div class="list" ng-repeat="data in hibatList track by $index" style="margin: 10px 0;">
+		  <a class="item item-icon-left item-icon-right" href="#" style="padding: 30px 60px;">
+		    <i class="icon ion-android-remove-circle" style="color: #FF0000;" ng-click="delHabit()" data-del="{{data.name}}"></i>
+		    	{{data.name}}
+		    <i class="icon ion-android-menu" style="color: grey;"></i>
+		  </a>
+		</div>
+	</ion-content>
+	
+	<!--底部-->
+	<ion-footer-bar class="footbox bar-light">
+		<ul class="footlist">
+			<li class="foot-item foot-habit"><i></i><span>习惯</span></li>
+			<li class="foot-item foot-search" ng-click="$state.go('search')"><i class="active"></i><span>发现</span></li>
+			<li class="foot-item foot-message" ng-click="$state.go('message')"><i></i><span>消息</span></li>
+			<li class="foot-item foot-mine" ng-click="$state.go('my')"><i></i><span>我的</span></li>
+		</ul>
+	</ion-footer-bar>
+</ion-view>

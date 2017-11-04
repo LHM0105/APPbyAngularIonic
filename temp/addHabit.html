@@ -1,0 +1,26 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar align-title="left" class="bar-balanced" style="height: 50px;">
+		<div class="buttons">
+			<button class="button" ng-click="$state.go('habit')" style="border: 0;"><i class="icon ion-chevron-left"></i></button>
+		</div>
+		<div class="title">
+			<input id="secIpt" value="" placeholder="输入你喜欢的习惯名称"/>
+		</div>
+		<div class="buttons">
+	    	<button class="button" style="border: 0;font-size: 16px;">创建</button>
+	  	</div>
+	</ion-header-bar>
+	
+	<div class="tabs" style="top: 50px;background: #fff;border-bottom: 0.1px solid #aaa;">
+	  	<a class="tab-item" ng-class="{tabItemActive:isActive}" on-select="isActive=true" on-deselect="isActive=false" ng-click="checkTab('hot')">热门</a>
+	  	<a class="tab-item" ng-click="checkTab('health')">健康</a>
+	  	<a class="tab-item" ng-click="checkTab('spot')">运动 </a>
+	  	<a class="tab-item" ng-click="checkTab('study')">学习</a>
+	  	<a class="tab-item" ng-click="checkTab('efficiency ')">效率</a>
+	  	<a class="tab-item" ng-click="checkTab('think')">思考</a>
+	</div>
+	<!--内容区域-->
+	<ion-content style="background: #F2F1EF;">
+		<h2>创建习惯</h2>
+	</ion-content>	
+</ion-view>s
