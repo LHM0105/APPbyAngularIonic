@@ -141,7 +141,7 @@ m1.controller("addHabitController",["$scope","$state","$http","$rootScope","$ion
 	$scope.$state = $state;
 	
 	//利用服务隐藏头部
-	$ionicNavBarDelegate.showBar(false);
+	$ionicNavBarDelegate.showBackButton(false);
 	
 	//默认第一项“热门”被选中
 	$scope.isActive = 1;
