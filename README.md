@@ -1,0 +1,3 @@
+# APPbyAngularIonic
+一个基于angular框架构建的app，使用了angular中的ionic脚手架
+种子习惯App页面
