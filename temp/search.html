@@ -17,11 +17,15 @@
 	
 	<!--底部-->
 	<ion-footer-bar class="footbox bar-light">
-		<ul class="footlist">
-			<li class="foot-item foot-habit"><i></i><span>习惯</span></li>
+		<!--<ul class="footlist">
+			<li class="foot-item foot-habit" ng-click="$state.go('habit')"><i></i><span>习惯</span></li>
 			<li class="foot-item foot-search" ng-click="$state.go('search')"><i class="active"></i><span>发现</span></li>
 			<li class="foot-item foot-message" ng-click="$state.go('message')"><i></i><span>消息</span></li>
 			<li class="foot-item foot-mine" ng-click="$state.go('my')"><i></i><span>我的</span></li>
-		</ul>
+		</ul>-->
+		
+		<!--引用自定义模板标签-->
+		<!--？？？自定义模板标签，底部，每块内容的样式不完全相同，如何控制？？？-->
+		<foot-part style="width: 100%;"></foot-part>
 	</ion-footer-bar>
 </ion-view>

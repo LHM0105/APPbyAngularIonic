@@ -6,6 +6,20 @@ m1.controller("general",["$scope","$state",function($scope,$state){
 	//设置打开就是“习惯页面”
 	$state.go("habit");
 }])
+
+//自定义底部模板
+//???每个页面的底部并不是完全一样，当前页面的底部按钮颜色不同，如何改变？
+m1.directive("footPart",function(){
+	return {
+		template:`<ul class="footlist">
+			<li class="foot-item foot-habit" ng-click="$state.go('habit')"><i></i><span>习惯</span></li>
+			<li class="foot-item foot-search" ng-click="$state.go('search')"><i class="active"></i><span>发现</span></li>
+			<li class="foot-item foot-message" ng-click="$state.go('message')"><i></i><span>消息</span></li>
+			<li class="foot-item foot-mine" ng-click="$state.go('my')"><i></i><span>我的</span></li>
+		</ul>`	
+	}
+})
+
 //配置路由
 m1.config(function($stateProvider){
 	$stateProvider.state("habit",{
@@ -32,6 +46,10 @@ m1.config(function($stateProvider){
 		url:"/my",
 		templateUrl:"temp/my.html",
 		controller:"myController"
+	}).state("haibitDetail",{
+		url:"/haibitDetail/:habitId",
+		temolateUrl:"temp/haibitDetail.html",
+		controller:"haibitDetailController"
 	})
 })
 
@@ -63,17 +81,7 @@ m1.controller("habitController",["$scope","$http","$state","$rootScope",function
     $scope.$state = $state;
 }])
 
-//添加习惯 控制器
-m1.controller("addHabitController",["$scope","$state",function($scope,$state){
-	$scope.goback = function(){
-		console.log("返回");
-		$state.go("habit")
-	}
-	
-//	$scope.active = function(){
-//		console.log("选项卡被选中")
-//	}
-}])
+
 //编辑习惯控制器
 m1.controller("editHabitController",["$scope","$state","$http","$ionicPopup",function($scope,$state,$http,$ionicPopup){
 	//点击完成，回到习惯页面
@@ -126,21 +134,65 @@ m1.controller("editHabitController",["$scope","$state","$http","$ionicPopup",fun
 	 };
 }])
 
-//搜索页面的控制器
-m1.controller("addHabitController",["$scope","$state","$http",function($scope,$state,$http){
-//	$scope.isActive = true;
+//添加习惯 页面的控制器
+m1.controller("addHabitController",["$scope","$state","$http","$rootScope","$ionicNavBarDelegate",function($scope,$state,$http,$rootScope,$ionicNavBarDelegate){
+	//将$state服务赋给变量$state,便于在页面中使用
+	
+	$scope.$state = $state;
+	
+	//利用服务隐藏头部
+	$ionicNavBarDelegate.showBar(false);
+	
+	//默认第一项“热门”被选中
+	$scope.isActive = 1;
+	$rootScope.mockalldata();
+	//显示习惯列表
+	$http({
+		url:"http://g.cn",
+		method:"get",
+		
+	}).success(function(data){
+		console.log(data.array)
+		$scope.allHabitList = data.array;
+	})
+	
+	//点击习惯类型选项卡，显示对应类别习惯列表
 	$scope.checkTab = function(type){
-		console.log("点击选项卡"+type)
+		console.log(type);
+		$scope.isActive = type;
+		//向后台发送请求，改变allHabitList
+		$http({
+			url:"http://g.cn",
+			method:"get",
+			
+		}).success(function(data){
+			console.log(data.array)
+			$scope.allHabitList = data.array;
+		})
 	}
+
+}])
+//习惯详情页面
+m1.controller("haibitDetailController",["$scope","$state","$http","$ionicPopup","$stateParams",function($scope,$state,$http,$ionicPopup,$stateParams){
+	$scope.$state = $state;
+	//获取路由中的参数
+	console.log($stateParams);
+	
+	
+}])
+
+//发现search页面的控制器
+m1.controller("searchController",["$scope","$state","$http","$ionicPopup",function($scope,$state,$http,$ionicPopup){
+	$scope.$state = $state;
 }])
 //消息message页面的控制器
 m1.controller("messageController",["$scope","$state","$http","$ionicPopup",function($scope,$state,$http,$ionicPopup){
-	
+	$scope.$state = $state;
 }])
 
 //我的 my页面的控制器
 m1.controller("myController",["$scope","$state","$http","$ionicPopup",function($scope,$state,$http,$ionicPopup){
-	
+	$scope.$state = $state;
 }])
 
 
@@ -164,6 +216,32 @@ m1.run(function($rootScope){
 			      "logosrc|+1":1,
 			      "days|0-30":1,
 			      "time": "@time('HH:mm')"
+			    }
+		  ]
+		})
+	}
+	
+	//所有习惯
+	$rootScope.mockalldata=function(){
+		//模拟假数据
+		Mock.mock('http://g.cn',{
+		  "array|20": [
+			    {
+			      "name|+1": [
+			        "吃早饭",
+			        "今日事，今日毕",
+			        "早起",
+			        "多喝水",		        
+			        "运动",
+			        "每天看书1小时",
+			        "吃水果",
+			        "不吃零食"
+			      ],
+			      "logosrc|1-8":1,
+			      "days|0-30":1,
+			      "time": "@time('HH:mm')",
+			      "peopleNum|1999-99999":200,
+			      "habitID|+1":1
 			    }
 		  ]
 		})

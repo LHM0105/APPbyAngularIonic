@@ -1,6 +1,8 @@
-<ion-view hide-nav-bar="true">
+<!--hide-nav-bar="true"隐藏父元素的nav-->
+<ion-view>
 	<ion-header-bar align-title="left" class="bar-balanced" style="height: 50px;">
-		<div class="buttons">
+		<!--键盘显示的时候隐藏此按钮-->
+		<div class="buttons hide-on-keyboard-open">
 			<button class="button" ng-click="$state.go('habit')" style="border: 0;"><i class="icon ion-chevron-left"></i></button>
 		</div>
 		<div class="title">
@@ -10,17 +12,27 @@
 	    	<button class="button" style="border: 0;font-size: 16px;">创建</button>
 	  	</div>
 	</ion-header-bar>
-	
-	<div class="tabs" style="top: 50px;background: #fff;border-bottom: 0.1px solid #aaa;">
-	  	<a class="tab-item" ng-class="{tabItemActive:isActive}" on-select="isActive=true" on-deselect="isActive=false" ng-click="checkTab('hot')">热门</a>
-	  	<a class="tab-item" ng-click="checkTab('health')">健康</a>
-	  	<a class="tab-item" ng-click="checkTab('spot')">运动 </a>
-	  	<a class="tab-item" ng-click="checkTab('study')">学习</a>
-	  	<a class="tab-item" ng-click="checkTab('efficiency ')">效率</a>
-	  	<a class="tab-item" ng-click="checkTab('think')">思考</a>
-	</div>
-	<!--内容区域-->
 	<ion-content style="background: #F2F1EF;">
-		<h2>创建习惯</h2>
+		<div class="tabss">
+		  	<a class="tab-item" ng-class="{tabItemActive:isActive==1}" ng-click="checkTab(1)">热门</a>
+		  	<a class="tab-item" ng-click="checkTab(2)" ng-class="{tabItemActive:isActive==2}">健康</a>
+		  	<a class="tab-item" ng-click="checkTab(3)" ng-class="{tabItemActive:isActive==3}">运动 </a>
+		  	<a class="tab-item" ng-click="checkTab(4)" ng-class="{tabItemActive:isActive==4}">学习</a>
+		  	<a class="tab-item" ng-click="checkTab(5)" ng-class="{tabItemActive:isActive==5}">效率</a>
+		  	<a class="tab-item" ng-click="checkTab(6)" ng-class="{tabItemActive:isActive==6}">思考</a>
+		</div>
+		<div class="allHabitList">
+			<!--点击进入习惯详情页面，将习惯id通过路由传入下一个页面-->
+			<div class="aHaibit"  ng-repeat="data in allHabitList track by $index" ng-click=" $state.go('haibitDetail',{habitId:data.habitID})">
+				<!--列表-->
+				<div class="aHabititem">
+				 	<i class="habitType"  style="background: url(img/login_{{data.logosrc}}.png) no-repeat 0 0;background-size: 100%;"></i>
+				 	<div class="habitText">
+				 		<h4 class="habitTit">{{data.name}}</h4>
+				 		<p class="habitInfo">{{data.peopleNum}}人在坚持</p>
+				 	</div>
+				</div>
+			</div>
+		</div>
 	</ion-content>	
-</ion-view>s
+</ion-view>

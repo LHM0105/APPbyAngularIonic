@@ -1,3 +1,8 @@
+html,body,p,h1,h2,h3,h4,h5,h6{
+	margin: 0;
+	padding: 0;
+}
+
 .footbox{
 	height: 60px;	
 }
@@ -89,4 +94,46 @@
 
 .tabItemActive{
 	border-bottom: 4px solid limegreen;
+}
+
+.tabss{
+	height: 50px;
+	display: flex;
+	justify-content: space-around;
+	background: #fff;
+	border-bottom: 0.1px solid #aaa;
+}
+.tabss .tab-item{
+	height: 50px;
+	line-height: 50px;
+}
+.aHaibit{
+	height:80px;
+	background:#fff;
+	
+}
+.aHaibit .aHabititem{
+	height:80px;
+	background: #fff;
+	border-bottom: 1px solid #aaa;
+	position: relative;
+}
+.aHaibit .aHabititem .habitType{
+	display: block;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	margin-top: -20px;
+}
+.aHaibit .aHabititem .habitText{
+	float: left;
+	position: absolute;
+	left: 80px;
+	top: 50%;
+	margin-top: -20px;
+}
+.aHaibit .aHabititem .habitText .habitInfo{
+	color: #AAAAAA;
 }
