@@ -137,3 +137,137 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 .aHaibit .aHabititem .habitText .habitInfo{
 	color: #AAAAAA;
 }
+.S_tabs{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	margin-bottom: -5px;
+}
+.S_tabs li{
+	width: 20%;
+	text-align: center;
+	font-size: 22px;
+	line-height:40px;
+	color: rgba(255,255,255,.5);
+}
+.S_tabs .Sactive{
+	color: rgba(255,255,255,1);
+	border-bottom: 4px solid #fff;
+}
+
+.jingxuanHabit{
+	height: 120px;
+	background: #fff;
+	margin: 10px;
+	border-radius: 6px;
+}
+.jingxuanHabit h5{
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+}
+.jingxuanHabit ul{
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+}
+.jingxuanHabit ul li i{
+	background: url(../img/login_3.png) no-repeat center 0;
+	background-size: 100%;
+	display: block;
+	width: 50px;
+	height: 50px;
+}
+.jingxuanHabit ul li span{
+	display: block;
+	text-align: center;
+}
+.jingxuanHabit ul li:nth-child(2) i{
+	background: url(../img/login_2.png) no-repeat center 0;
+	background-size: 100%;
+}
+.jingxuanHabit ul li:nth-child(3) i{
+	background: url(../img/login_1.png) no-repeat center 0;
+	background-size: 100%;
+}
+.jingxuanHabit ul li:nth-child(4) i{
+	background: url(../img/more_life_style.png) no-repeat center 0;
+	background-size: 100%;
+}
+
+.adynamic{
+	margin: 10px;
+	background: #fff;
+	border-radius: 4px;
+	padding-top: 10px;
+}
+.adynamic .adynamicTit{
+	height: 60px;
+	
+}
+.adynamic .adynamicTit .photobox{
+	float: left;
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+	border-radius: 100%;
+}
+.adynamic .adynamicTit .tit{
+	float: left;
+}
+.adynamic .adynamicTit .tit h5{
+	font-size: 16px;
+	padding: 4px;
+}
+.adynamic .adynamicTit .tit p{
+	color: #444;
+	padding: 0 4px;
+}
+.adynamic .adynamicTit .tit p span{
+	color: forestgreen;
+}
+
+.adynamic .adynamicTit .time{
+	float: right;
+	padding: 2px 10px;
+}
+.adynamic .adynamicTit .time time{
+	display: block;
+	padding: 4px 0;
+	font-size: 12px;
+	color: #333;
+}
+.adynamic .adynamicTit .time span{
+	display: block;
+	text-align: right;
+}
+.adynamic .imgbox{
+	
+}
+.adynamic .S_foot{
+	background: #fff;
+}
+.adynamic .S_foot ul{
+	display: flex;
+	width: 100%;
+	height: 50px;
+	justify-content: space-around;
+}
+.adynamic .S_foot ul li{
+	width: 30px;
+	height: 40px;
+	background: url(../img/ic_mindfeed_like.png) no-repeat center 6px;
+	background-size: 100%;
+}
+.adynamic .S_foot ul li:nth-child(2){
+	background: url(../img/ic_mindfeed_comment.png) no-repeat center 6px;
+	background-size: 100%;
+}
+.adynamic .S_foot ul li:nth-child(3){
+	background: url(../img/ic_mindfeed_tree.png) no-repeat center  6px;
+	background-size: 100%;
+}
+.adynamic .S_foot ul li:nth-child(4){
+	background: url(../img/ic_more.png) no-repeat center 6px;
+	background-size: 100%;
+}

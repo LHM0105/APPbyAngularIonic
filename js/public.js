@@ -50,6 +50,10 @@ m1.config(function($stateProvider){
 		url:"/haibitDetail/:habitId",
 		temolateUrl:"temp/haibitDetail.html",
 		controller:"haibitDetailController"
+	}).state("myhabitDetail",{
+		url:"/myhabit/:habitId",
+		templateUrl:"temp/myhabitDetail.html",
+		controller:"myhabitDeController"
 	})
 })
 
@@ -64,7 +68,7 @@ m1.controller("habitController",["$scope","$http","$state","$rootScope",function
 //      params:{userID:"userid"}
         }).success(function(data) {
         	$scope.datalist = data.array;
-//      	console.log(data.array);
+        	console.log(data.array);
     });
     
     //点击编辑，编辑习惯
@@ -78,6 +82,25 @@ m1.controller("habitController",["$scope","$http","$state","$rootScope",function
     	$state.go("addHabit");
     }
     
+    $scope.$state = $state;
+}])
+m1.controller("myhabitDeController",["$scope","$http","$state","$rootScope","$stateParams",function($scope,$http,$state,$rootScope,$stateParams){
+//	//调用假数据方法
+//	$rootScope.mockdata();
+//	
+//  $http({
+//      url: 'http://g.cn',
+//      method:"get",
+////      params:{userID:"userid"}
+//      }).success(function(data) {
+//      	$scope.datalist = data.array;
+//      	console.log(data.array);
+//  });
+	$scope.habitname = $stateParams.habitId;
+	console.log($stateParams);
+	//获取到习惯的id
+	//通过习惯的id获取相关信息
+	
     $scope.$state = $state;
 }])
 
@@ -184,6 +207,10 @@ m1.controller("haibitDetailController",["$scope","$state","$http","$ionicPopup",
 //发现search页面的控制器
 m1.controller("searchController",["$scope","$state","$http","$ionicPopup",function($scope,$state,$http,$ionicPopup){
 	$scope.$state = $state;
+	$scope.isActive = 1;
+	$scope.clickTab = function(val){
+		$scope.isActive = val;
+	}
 }])
 //消息message页面的控制器
 m1.controller("messageController",["$scope","$state","$http","$ionicPopup",function($scope,$state,$http,$ionicPopup){
@@ -215,7 +242,8 @@ m1.run(function($rootScope){
 			      ],
 			      "logosrc|+1":1,
 			      "days|0-30":1,
-			      "time": "@time('HH:mm')"
+			      "time": "@time('HH:mm')",
+			      "habitID|+1":1
 			    }
 		  ]
 		})
@@ -244,6 +272,31 @@ m1.run(function($rootScope){
 			      "habitID|+1":1
 			    }
 		  ]
+		})
+	}
+	//习惯详情
+	$rootScope.mockAdata=function(){
+		//模拟假数据
+		Mock.mock('http://g.cn',{
+		  "array":
+			    {
+			    	"habitID":1,
+			      	"name":"吃早饭",
+			      	"logosrc|1-8":1,
+			      	"days|0-30":1,
+			      	"time": "@time('HH:mm')",
+			      	"peopleNum|1999-99999":200,
+			      	"coments|+1":[
+			      		"这是一些类似评论的记录习惯的信息",
+			      		"这是一些记录习惯的信息放大v",
+			      		"这是一些评论信息对方的感受的",
+			      		"这是一些评论信息的官方的说法公司",
+			      		"这是一些评论信息地方豆腐干微软",
+			      		"这是一些评论手动阀啊大哥信息",
+			      		"12第三方的风格不符个人",
+			      		"这是一些评论信息撒大大方便",
+			      	]
+			    }
 		})
 	}
 })

@@ -10,7 +10,7 @@
     </ion-nav-buttons>
 	<!--内容区域-->
 	<ion-content style="background: #F2F1EF;">
-		<div class="card"  ng-repeat="data in datalist track by $index">
+		<div class="card"  ng-repeat="data in datalist track by $index" ng-click=" $state.go('myhabitDetail',{habitId:data.name})">
 			<!--习惯卡片-->
 			<div class="item item-text-wrap">
 			 	<i class="habitType"  style="background: url(img/login_{{data.logosrc}}.png) no-repeat 0 0;background-size: 100%;"></i>

@@ -1,17 +1,58 @@
-<ion-view title="发现">
-    <!--头部右边按钮-->
-    <ion-nav-buttons side="right">
-      <button class="button" ng-click="editComplete()" style="border: 0;font-size: 16px;">完成</button>
-      
-    </ion-nav-buttons>
+<ion-view hide-nav-bar="true">
+	<ion-header-bar align-title="left" class="bar-balanced" style="height: 50px;">
+		<ul class="S_tabs">
+			<li ng-class="{Sactive:isActive==1}" ng-click="clickTab(1)">热门</li>
+			<li ng-class="{Sactive:isActive==2}" ng-click="clickTab(2)">关注</li>
+			<li ng-class="{Sactive:isActive==3}" ng-click="clickTab(3)">最新</li>
+		</ul>
+		
+	</ion-header-bar>
 	<!--内容区域-->
-	<ion-content style="background: #F2F1EF;">
-		<div class="list" ng-repeat="data in hibatList track by $index" style="margin: 10px 0;">
-		  <a class="item item-icon-left item-icon-right" href="#" style="padding: 30px 60px;">
-		    <i class="icon ion-android-remove-circle" style="color: #FF0000;" ng-click="delHabit()" data-del="{{data.name}}"></i>
-		    	{{data.name}}
-		    <i class="icon ion-android-menu" style="color: grey;"></i>
-		  </a>
+	<ion-content style="background: #F2F1EF;margin-top: 5px;">
+	  	<ion-slide-box style="height: 200px;background: #fff;margin:10px;border-radius: 6px;" auto-play="true" slide-interval="3000" does-continue="true" show-pager="false">
+		  <ion-slide>
+		    <div style="background: darkorange;height:100%;"><h1 style="color: #fff;text-align: center;line-height: 150px;">种子读书</h1></div>
+		  </ion-slide>
+		  <ion-slide>
+		    <div style="background: #32CD32;height: 100%;"><h1 style="color: #fff;text-align: center;line-height: 150px;">种子契约</h1></div>
+		  </ion-slide>
+		</ion-slide-box>
+		
+		<div class="jingxuanHabit">
+			<h5>生活方式精选</h5>
+			<ul>
+				<li ng-click="$state.go()"><i></i><span>左手练字</span></li>
+				<li ng-click="$state.go()"><i></i><span>左手练字</span></li>
+				<li ng-click="$state.go()"><i></i><span>左手练字</span></li>
+				<li ng-click="$state.go()"><i></i><span>更多</span></li>
+			</ul>
+		</div>
+		
+		<div class="adynamic">
+			<div class="adynamicTit">
+				<div class="photobox">
+					<img src="img/login_7.png" width="100%"/>
+				</div>
+				<div class="tit"> 
+					<h5>用户昵称</h5>
+					<p>坚持<span>#早起#</span></p>
+				</div>
+				<div class="time">
+					<time>今天14:17</time>
+					<span>226天</span>
+				</div>
+			</div>
+			<div ng-class="imgbox:true">
+				<img src="img/img2.jpg" width="100%"/>
+			</div>
+			<div class="S_foot">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
 		</div>
 	</ion-content>
 	
