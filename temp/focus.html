@@ -1,0 +1,52 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar align-title="left" class="bar-balanced" style="height: 50px;">
+		<ul class="nav navbar-nav S_tabs">
+			<li ui-sref-active="active" ng-class="{Sactive:false}" ng-click="clickTab(1,'hot')">热门</li>
+			<li ui-sref-active="active" ng-class="{Sactive:true}" ng-click="clickTab(2,'focus')">关注</li>
+			<li ui-sref-active="active" ng-class="{Sactive:false}" ng-click="clickTab(3,'newest')">最新</li>
+		</ul>
+	</ion-header-bar>
+	<ion-content style="background: #F2F1EF;margin-top: 5px;">
+		<div class="adynamic" ng-repeat="data in commontList track by $index">
+			<div class="adynamicTit">
+				<div class="photobox">
+					<img src="img/login_{{data.photo}}.png" width="100%"/>
+				</div>
+				<div class="tit"> 
+					<h5>{{data.userName}}</h5>
+					<p>坚持<span>#{{data.habitType}}#</span></p>
+				</div>
+				<div class="time">
+					<time>今天{{data.time}}</time>
+					<span>{{data.days}}天</span>
+				</div>
+			</div>
+			<div class="imgbox">
+				<img src="img/img{{data.imgsrc}}.jpg" width="100%"/>
+			</div>
+			<div class="S_foot">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+			
+	</ion-content>
+	
+	<!--底部-->
+	<ion-footer-bar class="footbox bar-light">
+		<!--<ul class="footlist">
+			<li class="foot-item foot-habit" ng-click="$state.go('habit')"><i></i><span>习惯</span></li>
+			<li class="foot-item foot-search" ng-click="$state.go('search')"><i class="active"></i><span>发现</span></li>
+			<li class="foot-item foot-message" ng-click="$state.go('message')"><i></i><span>消息</span></li>
+			<li class="foot-item foot-mine" ng-click="$state.go('my')"><i></i><span>我的</span></li>
+		</ul>-->
+		
+		<!--引用自定义模板标签-->
+		<!--？？？自定义模板标签，底部，每块内容的样式不完全相同，如何控制？？？-->
+		<foot-part style="width: 100%;"></foot-part>
+	</ion-footer-bar>
+</ion-view>

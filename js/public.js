@@ -54,6 +54,18 @@ m1.config(function($stateProvider){
 		url:"/myhabit/:habitId",
 		templateUrl:"temp/myhabitDetail.html",
 		controller:"myhabitDeController"
+	}).state("focus",{
+		url:"/search/focus",
+		templateUrl:"temp/focus.html",
+		controller:"searchController"
+	}).state("hot",{
+		url:"/search",
+		templateUrl:"temp/search.html",
+		controller:"searchController"
+	}).state("newest",{
+		url:"/search/new",
+		templateUrl:"temp/newest.html",
+		controller:"searchController"
 	})
 })
 
@@ -84,6 +96,8 @@ m1.controller("habitController",["$scope","$http","$state","$rootScope",function
     
     $scope.$state = $state;
 }])
+
+//我的习惯页面
 m1.controller("myhabitDeController",["$scope","$http","$state","$rootScope","$stateParams",function($scope,$http,$state,$rootScope,$stateParams){
 //	//调用假数据方法
 //	$rootScope.mockdata();
@@ -205,12 +219,54 @@ m1.controller("haibitDetailController",["$scope","$state","$http","$ionicPopup",
 }])
 
 //发现search页面的控制器
-m1.controller("searchController",["$scope","$state","$http","$ionicPopup",function($scope,$state,$http,$ionicPopup){
+m1.controller("searchController",["$scope","$state","$http","$ionicPopup","$rootScope",function($scope,$state,$http,$ionicPopup,$rootScope){
 	$scope.$state = $state;
-	$scope.isActive = 1;
-	$scope.clickTab = function(val){
-		$scope.isActive = val;
+//	$scope.isActive = 1;
+	$scope.clickTab = function(val,type){
+//		$scope.isActive = val;
+		$state.go(type)
 	}
+	//引入假数据
+	$rootScope.mockAdata();
+	//请求数据
+	$http({
+		url:"http://g.cn",
+		method:"get",
+	}).success(function(data){
+		console.log(data.coments);
+		$scope.commontList = data.coments;
+	})
+	
+	
+	//下拉刷新
+	$scope.doRefresh = function() {
+		console.log("下拉刷新")
+		$http({
+			method:"get",
+			url:"http://g.cn",
+		}).success(function(data){
+			$scope.commontList = data.coments;
+			$scope.$broadcast('scroll.refreshComplete');
+		})
+	};
+	$scope.ismore = true;
+	$scope.loadMore = function() {
+	 	console.log("上拉加载")
+	    $http({
+			method:"get",
+			url:"http://g.cn",
+		}).success(function(data){
+			if(data.coments.length > 0){
+				$scope.commontList = $scope.commontList.concat(data.coments);	
+			}else{
+//				//如果请求到的数据为0，就阻止无限滚动
+				$scope.ismore = false;
+			}
+//console.log(data)
+			//停止广播
+			$scope.$broadcast('scroll.infiniteScrollComplete');
+		})
+	};
 }])
 //消息message页面的控制器
 m1.controller("messageController",["$scope","$state","$http","$ionicPopup",function($scope,$state,$http,$ionicPopup){
@@ -218,13 +274,51 @@ m1.controller("messageController",["$scope","$state","$http","$ionicPopup",funct
 }])
 
 //我的 my页面的控制器
-m1.controller("myController",["$scope","$state","$http","$ionicPopup",function($scope,$state,$http,$ionicPopup){
+m1.controller("myController",["$scope","$state","$http","$ionicPopup","$rootScope",function($scope,$state,$http,$ionicPopup,$rootScope){
 	$scope.$state = $state;
+	
+	//创建假数据
+	$rootScope.mockmydata();
+	//从后台请求数据
+	$http({
+		url:"http://g.cn",
+		method:"get",
+		
+	}).success(function(data){
+		console.log(data.array)
+		$scope.myhabitList = data.array;
+	})
 }])
 
 
 //定义假数据，全局变量
 m1.run(function($rootScope){
+//	$rootScope.$rootScope=$rootScope;
+	$rootScope.mockmydata=function(){
+		//模拟假数据
+		Mock.mock('http://g.cn',{
+		  "array|20": [
+			    {
+			      "name|+1": [
+			        "吃早饭",
+			        "今日事，今日毕",
+			        "早起",
+			        "多喝水",		        
+			        "运动",
+			        "每天看书1小时",
+			        "吃水果",
+			        "不吃零食"
+			      ],
+			      "days|0-999":30,
+			      "stime": "@datetime('yyyy MM.dd')",
+			      "etime": "@datetime('yyyy MM.dd')",
+			      "habitID|+1":1,
+			      "imgsrc|1-4":1
+			    }
+		  ]
+		})
+	}
+	
 	$rootScope.mockdata=function(){
 		//模拟假数据
 		Mock.mock('http://g.cn',{
@@ -278,25 +372,27 @@ m1.run(function($rootScope){
 	$rootScope.mockAdata=function(){
 		//模拟假数据
 		Mock.mock('http://g.cn',{
-		  "array":
-			    {
-			    	"habitID":1,
-			      	"name":"吃早饭",
-			      	"logosrc|1-8":1,
-			      	"days|0-30":1,
-			      	"time": "@time('HH:mm')",
-			      	"peopleNum|1999-99999":200,
-			      	"coments|+1":[
-			      		"这是一些类似评论的记录习惯的信息",
-			      		"这是一些记录习惯的信息放大v",
-			      		"这是一些评论信息对方的感受的",
-			      		"这是一些评论信息的官方的说法公司",
-			      		"这是一些评论信息地方豆腐干微软",
-			      		"这是一些评论手动阀啊大哥信息",
-			      		"12第三方的风格不符个人",
-			      		"这是一些评论信息撒大大方便",
-			      	]
-			    }
+
+	      	"coments|8":[
+	      		{
+	      			"userName|+1":[
+	      				"lhm11",
+	      				"啦啦啦",
+	      				"是我啊",
+	      				"小仙女",
+	      				"那好吧",
+	      				"我是小王子",
+	      				"莫西莫西",
+	      				"hello你好"
+	      			],
+	      			"text":"这是一些类似评论的记录习惯的信息",
+	      			"habitType":"早起",
+	      			"time": "@time('HH:mm')",
+	      			"days|1-300":1,
+	      			"imgsrc|1-4":1,
+	      			"photo|1-8":1
+	      		}
+	      	]
 		})
 	}
 })

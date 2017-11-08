@@ -1,17 +1,37 @@
-<ion-view title="我的">
+<ion-view title="userInfo">
     <!--头部右边按钮-->
     <ion-nav-buttons side="right">
-      <button class="button" ng-click="editComplete()" style="border: 0;font-size: 16px;">完成</button>
-      
+      <button class="button" ng-click="editComplete()" style="border: 0;font-size: 24px;"><i class="ion-gear-a"></i></button>
     </ion-nav-buttons>
+    <ion-nav-buttons side="left">
+      <button class="button" ng-click="editComplete()" style="border: 0;font-size: 24px;"><i class="ion-person-add"></i></button>
+    </ion-nav-buttons>
+    
 	<!--内容区域-->
 	<ion-content style="background: #F2F1EF;">
-		<div class="list" ng-repeat="data in hibatList track by $index" style="margin: 10px 0;">
-		  <a class="item item-icon-left item-icon-right" href="#" style="padding: 30px 60px;">
-		    <i class="icon ion-android-remove-circle" style="color: #FF0000;" ng-click="delHabit()" data-del="{{data.name}}"></i>
-		    	{{data.name}}
-		    <i class="icon ion-android-menu" style="color: grey;"></i>
-		  </a>
+		<div class="my_userbox">
+			<div class="topbox">
+				<div class="photo">
+					<img src="img/login_8.png" width="100%"/>
+				</div>
+				<ul>
+					<li><span>3</span><i>习惯</i></li>
+					<li><span>1</span><i>关注</i></li>
+					<li><span>0</span><i>粉丝</i></li>
+				</ul>
+			</div>
+			<p class="txt">一切，源于喜欢</p>
+			<div class="btns">	
+				<i class="ion-grid" style="color: green;"></i>
+				<i class="ion-navicon-round" style="color: gray;"></i>
+			</div>
+		</div>
+		<div class="aRecord" ng-repeat="data in myhabitList track by $index">
+			<h5>{{data.name}}</h5>
+			<p>{{data.stime}}-{{data.etime}}共坚持{{data.days}}天</p>
+			<div class="imgbox">
+				<img src="img/img{{data.imgsrc}}.jpg" width="100%" height="100%" />
+			</div>
 		</div>
 	</ion-content>
 	

@@ -271,3 +271,75 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 	background: url(../img/ic_more.png) no-repeat center 6px;
 	background-size: 100%;
 }
+
+.my_userbox{
+	background: #fff;
+	height:180px;
+}
+.my_userbox .topbox{
+	height: 90px;
+}
+.my_userbox .topbox .photo{
+	height: 70px;
+	width: 70px;
+	float: left;
+	margin: 10px;
+	border-radius: 100%;
+	overflow: hidden;
+	background: yellow;
+}
+.my_userbox .topbox ul{
+	float: left;
+	width: 300px;
+	display: flex;
+	justify-content: space-around;
+	height: 90px;
+	align-items: center;
+}
+.my_userbox .topbox ul li{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.my_userbox .topbox ul li span{
+	color: green;
+	font-size: 14px;
+}
+.my_userbox .topbox ul li i{
+	font-size: 16px;
+}
+.my_userbox .txt{
+	height: 40px;
+	line-height: 40px;
+	padding-left:20px ;
+}
+.my_userbox .btns{
+	overflow: hidden;
+	padding: 0 20px;
+}
+.my_userbox .btns i{
+	font-size: 24px;
+	float: right;
+	margin: 10px;
+}
+
+.aRecord{
+	margin: 10px;
+	background: #fff;
+	border-radius: 4px;
+	overflow: hidden;
+}
+.aRecord h5{
+	/*font-size: 18px;*/
+	padding: 10px;
+}
+.aRecord p{
+	color: #444444;
+	font-size: 14px;
+	padding: 0 0 10px 10px;
+}
+.aRecord .imgbox{
+	width: 100px;
+	height: 100px;
+	margin: 0 0 10px 10px;
+}

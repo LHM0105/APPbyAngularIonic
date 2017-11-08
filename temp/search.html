@@ -1,14 +1,22 @@
 <ion-view hide-nav-bar="true">
 	<ion-header-bar align-title="left" class="bar-balanced" style="height: 50px;">
-		<ul class="S_tabs">
-			<li ng-class="{Sactive:isActive==1}" ng-click="clickTab(1)">热门</li>
-			<li ng-class="{Sactive:isActive==2}" ng-click="clickTab(2)">关注</li>
-			<li ng-class="{Sactive:isActive==3}" ng-click="clickTab(3)">最新</li>
+		<ul class="nav navbar-nav S_tabs">
+			<li ui-sref-active="active" ng-class="{Sactive:true}" ng-click="clickTab(1,'hot')">热门</li>
+			<li ui-sref-active="active" ng-class="{Sactive:false}" ng-click="clickTab(2,'focus')">关注</li>
+			<li ui-sref-active="active" ng-class="{Sactive:false}" ng-click="clickTab(3,'newest')">最新</li>
 		</ul>
-		
 	</ion-header-bar>
-	<!--内容区域-->
 	<ion-content style="background: #F2F1EF;margin-top: 5px;">
+		<!--内容区域-->
+		<!--<ul class="nav navbar-nav">
+		    <li ui-sref-active="active"><a ui-sref="home">首页</a></li>
+		    <li ui-sref-active="active"><a ui-sref="album">相册</a></li>
+		    <li ui-sref-active="active"><a ui-sref="user.baseInfo">个人中心</a></li>
+		</ul>-->
+		<!--下拉刷新-->
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
+		</ion-refresher>
+		
 	  	<ion-slide-box style="height: 200px;background: #fff;margin:10px;border-radius: 6px;" auto-play="true" slide-interval="3000" does-continue="true" show-pager="false">
 		  <ion-slide>
 		    <div style="background: darkorange;height:100%;"><h1 style="color: #fff;text-align: center;line-height: 150px;">种子读书</h1></div>
@@ -27,33 +35,36 @@
 				<li ng-click="$state.go()"><i></i><span>更多</span></li>
 			</ul>
 		</div>
-		
-		<div class="adynamic">
-			<div class="adynamicTit">
-				<div class="photobox">
-					<img src="img/login_7.png" width="100%"/>
+		<!--展示每一条动态-->
+		<div class="adynamic" ng-repeat="data in commontList track by $index">
+					<div class="adynamicTit">
+						<div class="photobox">
+							<img src="img/login_{{data.photo}}.png" width="100%"/>
+						</div>
+						<div class="tit"> 
+							<h5>{{data.userName}}</h5>
+							<p>坚持<span>#{{data.habitType}}#</span></p>
+						</div>
+						<div class="time">
+							<time>今天{{data.time}}</time>
+							<span>{{data.days}}天</span>
+						</div>
+					</div>
+					<div class="imgbox">
+						<img src="img/img{{data.imgsrc}}.jpg" width="100%"/>
+					</div>
+					<div class="S_foot">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
 				</div>
-				<div class="tit"> 
-					<h5>用户昵称</h5>
-					<p>坚持<span>#早起#</span></p>
-				</div>
-				<div class="time">
-					<time>今天14:17</time>
-					<span>226天</span>
-				</div>
-			</div>
-			<div ng-class="imgbox:true">
-				<img src="img/img2.jpg" width="100%"/>
-			</div>
-			<div class="S_foot">
-				<ul>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ul>
-			</div>
-		</div>
+				<!--上拉加载-->
+		<ion-infinite-scroll on-infinite="loadMore()" distance="1%" ng-if="ismore">
+  		</ion-infinite-scroll>	
 	</ion-content>
 	
 	<!--底部-->
