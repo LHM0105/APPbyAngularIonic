@@ -99,18 +99,48 @@ m1.controller("habitController",["$scope","$http","$state","$rootScope",function
 
 //我的习惯页面
 m1.controller("myhabitDeController",["$scope","$http","$state","$rootScope","$stateParams",function($scope,$http,$state,$rootScope,$stateParams){
-//	//调用假数据方法
-//	$rootScope.mockdata();
-//	
-//  $http({
-//      url: 'http://g.cn',
-//      method:"get",
-////      params:{userID:"userid"}
-//      }).success(function(data) {
-//      	$scope.datalist = data.array;
-//      	console.log(data.array);
-//  });
-	$scope.habitname = $stateParams.habitId;
+//引入假数据
+	$rootScope.mockAdata();
+	//请求数据
+	$http({
+		url:"http://g.cn",
+		method:"get",
+	}).success(function(data){
+		console.log(data.coments);
+		$scope.commontList = data.coments;
+	})
+	
+	
+	//下拉刷新
+	$scope.doRefresh = function() {
+		console.log("下拉刷新")
+		$http({
+			method:"get",
+			url:"http://g.cn",
+		}).success(function(data){
+			$scope.commontList = data.coments;
+			$scope.$broadcast('scroll.refreshComplete');
+		})
+	};
+	$scope.ismore = true;
+	$scope.loadMore = function() {
+	 	console.log("上拉加载")
+	    $http({
+			method:"get",
+			url:"http://g.cn",
+		}).success(function(data){
+			if(data.coments.length > 0){
+				$scope.commontList = $scope.commontList.concat(data.coments);	
+			}else{
+//				//如果请求到的数据为0，就阻止无限滚动
+				$scope.ismore = false;
+			}
+//console.log(data)
+			//停止广播
+			$scope.$broadcast('scroll.infiniteScrollComplete');
+		})
+	};
+	$scope.habitname = decodeURI($stateParams.habitId);
 	console.log($stateParams);
 	//获取到习惯的id
 	//通过习惯的id获取相关信息

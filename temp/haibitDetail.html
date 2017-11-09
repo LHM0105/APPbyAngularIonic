@@ -1,4 +1,16 @@
-<ion-view hide-nav-bar="false" title="每天看书1小时">
+<ion-view hide-nav-bar="true" title="每天看书1小时">
+	<ion-header-bar align-title="left" class="bar-balanced" style="height: 50px;">
+		<!--键盘显示的时候隐藏此按钮-->
+		<div class="buttons hide-on-keyboard-open">
+			<button class="button" ng-click="$state.go('habit')" style="border: 0;"><i class="icon ion-chevron-left"></i></button>
+		</div>
+		<div class="title">
+			<input id="secIpt" value="" placeholder="输入你喜欢的习惯名称"/>
+		</div>
+		<div class="buttons">
+	    	<button class="button" style="border: 0;font-size: 16px;">创建</button>
+	  	</div>
+	</ion-header-bar>
 	<ion-content>
 		<ul>
 			<li>111</li>

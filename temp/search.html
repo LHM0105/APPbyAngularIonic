@@ -37,31 +37,31 @@
 		</div>
 		<!--展示每一条动态-->
 		<div class="adynamic" ng-repeat="data in commontList track by $index">
-					<div class="adynamicTit">
-						<div class="photobox">
-							<img src="img/login_{{data.photo}}.png" width="100%"/>
-						</div>
-						<div class="tit"> 
-							<h5>{{data.userName}}</h5>
-							<p>坚持<span>#{{data.habitType}}#</span></p>
-						</div>
-						<div class="time">
-							<time>今天{{data.time}}</time>
-							<span>{{data.days}}天</span>
-						</div>
-					</div>
-					<div class="imgbox">
-						<img src="img/img{{data.imgsrc}}.jpg" width="100%"/>
-					</div>
-					<div class="S_foot">
-						<ul>
-							<li></li>
-							<li></li>
-							<li></li>
-							<li></li>
-						</ul>
-					</div>
+			<div class="adynamicTit">
+				<div class="photobox">
+					<img src="img/login_{{data.photo}}.png" width="100%"/>
 				</div>
+				<div class="tit"> 
+					<h5>{{data.userName}}</h5>
+					<p>坚持<span>#{{data.habitType}}#</span></p>
+				</div>
+				<div class="time">
+					<time>今天{{data.time}}</time>
+					<span>{{data.days}}天</span>
+				</div>
+			</div>
+			<div class="imgbox">
+				<img src="img/img{{data.imgsrc}}.jpg" width="100%"/>
+			</div>
+			<div class="S_foot">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
 				<!--上拉加载-->
 		<ion-infinite-scroll on-infinite="loadMore()" distance="1%" ng-if="ismore">
   		</ion-infinite-scroll>	
