@@ -2,12 +2,35 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 	margin: 0;
 	padding: 0;
 }
+/*头部样式，重置了ionic中的组件的样式*/
+.bar{
+	height: 0.9rem;
+}
+.bar .title{
+	line-height: 0.9rem;
+	height: 0.9rem;
+	font-size: 0.4rem;
+}
+.has-header{
+	top:0.9rem;	
+}
+.bar .title.title-left{
+	text-align: center;
+}
+.platform-android .bar .title{
+	line-height:0.9rem;
+}
 
 .footbox{
-	height: 60px;	
+	height: auto;
+	/*height: 60px;*/	
+	/*height: 1rem;*/
+	/*padding: 0.05rem;*/
+	padding: 0;
 }
 .footbox .footlist{
-	height: 60px;
+	height: 1rem;
+	/*height: 60px;*/
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
@@ -19,8 +42,10 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 }
 .footbox .footlist .foot-item i{
 	display: block;
-	height: 30px;
-	width: 30px;
+	height: 0.5rem;
+	width: 0.5rem;
+	/*height: 30px;
+	width: 30px;*/
 	background: url(../img/habit_normal.png) no-repeat center;
 	background-size: 100%;
 }
@@ -49,6 +74,14 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 	background: url(../img/my_normal.png) no-repeat center;
 	background-size: 100%;
 }
+.footbox .footlist .foot-item{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.footbox .footlist .foot-item span{
+	font-size: 14px;
+}
 .footbox .footlist .foot-mine .active{
 	background: url(../img/my_pressed.png) no-repeat center;
 	background-size: 100%;
@@ -56,40 +89,55 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 /*习惯列表*/
 .card .item-text-wrap{
 	overflow: hidden;
+	height: 1.5rem;
 }
 .card .item-text-wrap .habitType{
 	float: left;
-	height: 60px;
-	width: 60px;
+	height: 1rem;
+	width: 1rem;
 }
 .card .item-text-wrap .habitText{
 	float: left;
-	height: 60px;
+	/*height: 60px;*/
+	height: 1rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items:flex-start;
-	padding-left: 20px;
+	/*padding-left: 20px;*/
+	padding-left: 0.34rem;
 }
 .card .item-text-wrap .habitText .habitTit{
-	font-size: 18px;
+	/*font-size: 18px;*/
+	font-size: 0.3rem;
 }
 .card .item-text-wrap .habitText .habitInfo{
-	font-size: 14px;
+	/*font-size: 14px;*/
+	font-size: 0.23rem;
+	
 }
-
+.bar .button, .bar button{
+	font-size: 0.32rem;
+}
 #secIpt{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: -0.32rem;
 	width:100%;
-	height: 70%;
+	height: 0.64rem;
 	border: 0;
-	text-indent: 35px;
+	/*text-indent: 35px;*/
+	text-indent: 0.64rem;
 	background:mediumseagreen url(../img/ic_edit_search.png) no-repeat left center;
 	background-size: contain;
 	border-radius: 6px;
+	font-size: 0.26rem;
+	color: #fff;
 }
 #secIpt::-webkit-input-placeholder{
 	color:rgba(100,255,150,.7);
-	text-indent: 35px;
+	text-indent: 0.64rem;
 }
 
 .tabItemActive{
@@ -97,42 +145,58 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 }
 
 .tabss{
-	height: 50px;
+	/*height: 50px;*/
+	height: 0.8rem;
 	display: flex;
 	justify-content: space-around;
 	background: #fff;
 	border-bottom: 0.1px solid #aaa;
 }
 .tabss .tab-item{
-	height: 50px;
-	line-height: 50px;
+	/*height: 50px;
+	line-height: 50px;*/
+	height: 0.8rem;
+	line-height: 0.8rem;
+	font-size: 0.3rem;
 }
 .aHaibit{
-	height:80px;
+	/*height:80px;*/
+	height: 1.2rem;
 	background:#fff;
 	
 }
 .aHaibit .aHabititem{
-	height:80px;
+	/*height:80px;*/
+	height: 1.2rem;
 	background: #fff;
 	border-bottom: 1px solid #aaa;
 	position: relative;
 }
 .aHaibit .aHabititem .habitType{
 	display: block;
-	width: 40px;
-	height: 40px;
+	/*width: 40px;
+	height: 40px;*/
+	width: 0.6rem;
+	height: 0.6rem;
 	position: absolute;
 	top: 50%;
-	left: 20px;
-	margin-top: -20px;
+	/*left: 20px;*/
+	left: 0.3rem;
+	/*margin-top: -20px;*/
+	margin-top: -0.3rem;
 }
 .aHaibit .aHabititem .habitText{
 	float: left;
 	position: absolute;
-	left: 80px;
+	/*left: 80px;*/
+	left: 1.2rem;
 	top: 50%;
-	margin-top: -20px;
+	/*margin-top: -20px;*/
+	margin: -0.3rem 0 0 0.1rem;
+	font-size: 0.26rem;
+}
+.aHaibit .aHabititem .habitText .habitTit{
+	font-size: 0.3rem;
 }
 .aHaibit .aHabititem .habitText .habitInfo{
 	color: #AAAAAA;
@@ -196,19 +260,24 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 }
 
 .adynamic{
-	margin: 10px;
+	/*margin: 10px;*/
+	margin: 0.15rem;
 	background: #fff;
 	border-radius: 4px;
-	padding-top: 10px;
+	/*padding-top: 10px;*/
+	padding-top: 0.15rem;
 }
 .adynamic .adynamicTit{
-	height: 60px;
+	/*height: 60px;*/
+	height: 0.9rem;
 	
 }
 .adynamic .adynamicTit .photobox{
 	float: left;
-	width: 50px;
-	height: 50px;
+	/*width: 50px;
+	height: 50px;*/
+	width: 0.75rem;
+	height: 0.75rem;
 	overflow: hidden;
 	border-radius: 100%;
 }
@@ -216,12 +285,15 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 	float: left;
 }
 .adynamic .adynamicTit .tit h5{
-	font-size: 16px;
-	padding: 4px;
+	/*font-size: 16px;*/
+	/*padding: 4px;*/
+	font-size: 0.3rem;
+	padding: 0.06rem;
 }
 .adynamic .adynamicTit .tit p{
 	color: #444;
 	padding: 0 4px;
+	font-size: 0.26rem;
 }
 .adynamic .adynamicTit .tit p span{
 	color: forestgreen;
@@ -229,17 +301,22 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 
 .adynamic .adynamicTit .time{
 	float: right;
-	padding: 2px 10px;
+	/*padding: 2px 10px;*/
+	padding: 0.03rem 0.15rem;
 }
 .adynamic .adynamicTit .time time{
 	display: block;
-	padding: 4px 0;
-	font-size: 12px;
+	/*padding: 4px 0;*/
+	padding: 0.06rem 0;
+	/*font-size: 12px;*/
+	font-size: 0.26rem;
+	
 	color: #333;
 }
 .adynamic .adynamicTit .time span{
 	display: block;
 	text-align: right;
+	font-size: 0.24rem;
 }
 .adynamic .imgbox{
 	
@@ -250,50 +327,60 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 .adynamic .S_foot ul{
 	display: flex;
 	width: 100%;
-	height: 50px;
+	/*height: 50px;*/
+	height: 0.75rem;
 	justify-content: space-around;
 }
 .adynamic .S_foot ul li{
-	width: 30px;
-	height: 40px;
-	background: url(../img/ic_mindfeed_like.png) no-repeat center 6px;
+	/*width: 30px;
+	height: 40px;*/
+	width: 0.45rem;
+	height: 0.6rem;
+	background: url(../img/ic_mindfeed_like.png) no-repeat center 0.09rem;
 	background-size: 100%;
 }
 .adynamic .S_foot ul li:nth-child(2){
-	background: url(../img/ic_mindfeed_comment.png) no-repeat center 6px;
+	background: url(../img/ic_mindfeed_comment.png) no-repeat center 0.09rem;
 	background-size: 100%;
 }
 .adynamic .S_foot ul li:nth-child(3){
-	background: url(../img/ic_mindfeed_tree.png) no-repeat center  6px;
+	background: url(../img/ic_mindfeed_tree.png) no-repeat center  0.09rem;
 	background-size: 100%;
 }
 .adynamic .S_foot ul li:nth-child(4){
-	background: url(../img/ic_more.png) no-repeat center 6px;
+	background: url(../img/ic_more.png) no-repeat center 0.09rem;
 	background-size: 100%;
 }
 
 .my_userbox{
 	background: #fff;
-	height:180px;
+	/*height:180px;*/
+	height:2.7rem ;
 }
 .my_userbox .topbox{
-	height: 90px;
+	/*height: 90px;*/
+	height: 1.35rem;
 }
 .my_userbox .topbox .photo{
-	height: 70px;
-	width: 70px;
+	/*height: 70px;
+	width: 70px;*/
+	height: 1.05rem;
+	width: 1.05rem;
 	float: left;
-	margin: 10px;
+	/*margin: 10px;*/
+	margin: 0.15rem;
 	border-radius: 100%;
 	overflow: hidden;
 	background: yellow;
 }
 .my_userbox .topbox ul{
 	float: left;
-	width: 300px;
+	/*width: 300px;*/
+	width: 4.5rem;
 	display: flex;
 	justify-content: space-around;
-	height: 90px;
+	/*height: 90px;*/
+	height: 1.35rem;
 	align-items: center;
 }
 .my_userbox .topbox ul li{
@@ -303,101 +390,127 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 }
 .my_userbox .topbox ul li span{
 	color: green;
-	font-size: 14px;
+	/*font-size: 14px;*/
+	font-size: 0.26rem;
 }
 .my_userbox .topbox ul li i{
-	font-size: 16px;
+	/*font-size: 16px;*/
+	font-size: 0.28rem;
+	line-height: 0.34rem;
 }
 .my_userbox .txt{
-	height: 40px;
-	line-height: 40px;
-	padding-left:20px ;
+	height: 0.6rem;
+	line-height: 0.6rem;
+	padding-left:0.3rem;
+	font-size: 0.28rem;
 }
 .my_userbox .btns{
 	overflow: hidden;
-	padding: 0 20px;
+	padding: 0 0.3rem;
 }
 .my_userbox .btns i{
-	font-size: 24px;
+	font-size: 0.4rem;
 	float: right;
-	margin: 10px;
+	margin: 0.15rem;
 }
 
 .aRecord{
-	margin: 10px;
+	margin: 0.15rem;
 	background: #fff;
 	border-radius: 4px;
 	overflow: hidden;
 }
 .aRecord h5{
-	/*font-size: 18px;*/
-	padding: 10px;
+	font-size: 0.32rem;
+	padding: 0.15rem;
 }
 .aRecord p{
 	color: #444444;
-	font-size: 14px;
-	padding: 0 0 10px 10px;
+	font-size: 0.26rem;
+	padding: 0 0 0.15rem 0.15rem;
 }
 .aRecord .imgbox{
-	width: 100px;
-	height: 100px;
-	margin: 0 0 10px 10px;
+	width: 1.5rem;
+	height: 1.5rem;
+	margin: 0 0 0.15rem 0.15rem;
 }
 
 .signIn{
 	width: 100%;
 	background:#fff;
-	height: 260px;
+	/*height: 260px;*/
+	height: 3.9rem;
 	
 }
 .signIn p{
 	text-align: center;
-	height: 50px;
-	line-height: 50px;
+	/*height: 50px;
+	line-height: 50px;*/
+	height: 0.75rem;
+	line-height: 0.75rem;
 	color: #AAAAAA;
+	font-size: 0.3rem;
 }
 .signIn .signLogo{
-	width: 180px;
-	height: 180px;
+	/*width: 180px;
+	height: 180px;*/
+	width:2.7rem;
+	height: 2.7rem;
 	margin: 0 auto;
 	background: url(../img/chenk_in_btn_bg.png) no-repeat center;
 	background-size: 100%;
 	position: relative;
 }
 .signIn .signLogo .signbg{
-	width: 160px;
-	height: 160px;
+	/*width: 160px;
+	height: 160px;*/
+	width: 2.4rem;
+	height: 2.4rem;
 	position: absolute;
-	top: 10px;
-	left: 10px;
+	/*top: 10px;
+	left: 10px;*/
+	top: 0.15rem;
+	left: 0.15rem;
 	background: #fff;
 	border-radius: 100%;
 }
 .signIn .signLogo img{
 	position: absolute;
-	width: 140px;
-	height: 140px;
+	/*width: 140px;
+	height: 140px;*/
+	width: 2.1rem;
+	height: 2.1rem;
 	position: absolute;
-	top: 20px;
-	left: 20px;
+	/*top: 20px;
+	left: 20px;*/
+	top: 0.3rem;
+	left: 0.3rem;
 	border-radius: 100%;
 }
 
 .statistics{
-	margin: 10px;
+	/*margin: 10px;*/
+	margin: 0.15rem;
 	background: #fff;
 }
 .statistics p{
-	height: 40px;
+	/*height: 40px;
 	line-height: 40px;
-	padding:0 10px;
+	padding:0 10px;*/
+	height: 0.6rem;
+	line-height: 0.6rem;
+	padding: 0 0.15rem;
 	overflow: hidden;
+	font-size: 0.26rem;
 }
 .statistics p i{
 	float: left;
-	width: 20px;
+	/*width: 20px;
 	height: 20px;
-	margin: 10px;
+	margin: 10px;*/
+	width: 0.3rem;
+	height: 0.3rem;
+	margin: 0.15rem;
 	background: url(../img/icon_tree_statistic.png) no-repeat center;
 	background-size: 100%;
 }
@@ -421,12 +534,25 @@ html,body,p,h1,h2,h3,h4,h5,h6{
 	flex-direction: column;
 	/*justify-content: center;*/
 	align-items: center;
+	font-size: 0.26rem;
 }
 .statistics ul li i{
 	display: block;
-	width: 20px;
+	/*width: 20px;
 	height: 20px;
-	margin: 10px 0;
+	margin: 10px 0;*/
+	width: 0.3rem;
+	height: 0.3rem;
+	margin: 0.15rem 0;
+	
 	background: url(../img/check_out.png) no-repeat center;
 	background-size: 100%;
+}
+
+.item{
+	font-size: 0.3rem;
+	height: 1rem;
+}
+.item-complex .item-content, .item-radio .item-content{
+	padding: 0.3rem 0 0.3rem 0.3rem;
 }

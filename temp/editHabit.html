@@ -1,17 +1,24 @@
 <ion-view title="习惯" hide-back-button="true">
     <!--头部右边按钮-->
     <ion-nav-buttons side="right">
-      <button class="button" ng-click="editComplete()" style="border: 0;font-size: 16px;">完成</button>
+      <button class="button" ng-click="editComplete()" style="border: 0;font-size: 0.3rem;">完成</button>
       
     </ion-nav-buttons>
 	<!--内容区域-->
 	<ion-content style="background: #F2F1EF;">
-		<div class="list" ng-repeat="data in hibatList track by $index" style="margin: 10px 0;">
-		  <a class="item item-icon-left item-icon-right" href="#" style="padding: 30px 60px;">
-		    <i class="icon ion-android-remove-circle" style="color: #FF0000;" ng-click="delHabit()" data-del="{{data.name}}"></i>
-		    	{{data.name}}
-		    <i class="icon ion-android-menu" style="color: grey;"></i>
-		  </a>
-		</div>
+		<!--习惯列表-->
+		<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+        <ion-item ng-repeat="item in items track by $index" item="item" class="item-remove-animate">
+          	{{item.name}}
+	          <!--删除-->
+	        <ion-delete-button class="ion-minus-circled" 
+	                             ng-click="onItemDelete(item)">
+	        </ion-delete-button>
+          <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)">
+          	
+          </ion-reorder-button>
+        </ion-item>
+
+     </ion-list>
 	</ion-content>
 </ion-view>

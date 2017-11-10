@@ -1,4 +1,50 @@
 //设置根字体大小
+(function(designWidth, maxWidth) {
+	var doc = document,
+	win = window,
+	docEl = doc.documentElement,
+	remStyle = document.createElement("style"),
+	tid;
+
+	function refreshRem() {
+		var width = docEl.getBoundingClientRect().width;
+		maxWidth = maxWidth || 540;
+		width>maxWidth && (width=maxWidth);
+		var rem = width * 100 / designWidth;
+		remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+	}
+
+	if (docEl.firstElementChild) {
+		docEl.firstElementChild.appendChild(remStyle);
+	} else {
+		var wrap = doc.createElement("div");
+		wrap.appendChild(remStyle);
+		doc.write(wrap.innerHTML);
+		wrap = null;
+	}
+	//要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+	refreshRem();
+
+	win.addEventListener("resize", function() {
+		clearTimeout(tid); //防止执行两次
+		tid = setTimeout(refreshRem, 300);
+	}, false);
+
+	win.addEventListener("pageshow", function(e) {
+		if (e.persisted) { // 浏览器后退的时候重新计算
+			clearTimeout(tid);
+			tid = setTimeout(refreshRem, 300);
+		}
+	}, false);
+
+	if (doc.readyState === "complete") {
+		doc.body.style.fontSize = "16px";
+	} else {
+		doc.addEventListener("DOMContentLoaded", function(e) {
+			doc.body.style.fontSize = "16px";
+		}, false);
+	}
+})(750, 750);
 
 //创建项目模块，引入ionic模块
 var m1 = angular.module("pro",["ionic"]);
@@ -161,44 +207,59 @@ m1.controller("editHabitController",["$scope","$state","$http","$ionicPopup",fun
 		method:"get",
 	}).success(function(data){
 		console.log(data);
-		$scope.hibatList = data.array;
+		$scope.items = data.array;
 	});
-	//点击按钮删除习惯
-	$scope.isDel = false;
-	$scope.delHabit = function(){
-		console.log(this.data.name);
-		let name = this.data.name;
+	
+//	$scope.shouldShowDelete = true;
+//	$scope.shouldShowReorder = true;
+//	$scope.listCanSwipe = true
+//	$scope.items = $scope.hibatList;
+	//设置删除按钮是否显示
+	$scope.data = {
+	   showDelete: true,
+	   showReorder:true
+	};
+	//移动位置
+	$scope.moveItem = function(item, fromIndex, toIndex) {
+		console.log($scope.items)
+	   	$scope.items.splice(fromIndex, 1);
+	    $scope.items.splice(toIndex, 0, item);
+	};
+	//删除选项
+	$scope.onItemDelete = function(item) {
+		console.log(this.$index)
+		let name = this.item.name;
 		console.log("删除习惯");
 	     var confirmPopup = $ionicPopup.confirm({
 		       	title: '删除习惯',
 		       	template: '确认删除习惯[ '+name+' ]吗?',
-//			  	templateUrl: '', // String (可选)。放在弹窗body内的一个html模板的URL。
-			  	cancelText: '取消', // String (默认: 'Cancel')。一个取消按钮的文字。
-			  	cancelType: 'button-clear button-balanced', // String (默认: 'button-default')。取消按钮的类型。
-			  	okText: '确认', // String (默认: 'OK')。OK按钮的文字。
-			  	okType: 'button-clear button-balanced', // String (默认: 'button-positive')。OK按钮的类型。
+			  	cancelText: '取消', 
+			  	cancelType: 'button-clear button-balanced', 
+			  	okText: '确认',
+			  	okType: 'button-clear button-balanced', 
 	     });
 	     
 	     confirmPopup.then(function(res) {
 		       if(res) {
 		       	//用户确认删除
 		         console.log('确认删除');
-		         //向后台发送请求
+		         //向后台发送请求,删除记录
 //		         $http({
 //		         	url:"",
 //		         	method:"post",
 //		         	params:"habitID:,userID:;"
 //		         	
 //		         }).success(function(data){
-//		         	
+//		    		//删除页面元素
+	     			$scope.items.splice($scope.items.indexOf(item), 1);	
 //		         })
 		       } else {
 		       	//用户取消删除
 		         console.log('取消删除');
 		       }
-	     });
-	  
-	 };
+	    });
+	};
+
 }])
 
 //添加习惯 页面的控制器
