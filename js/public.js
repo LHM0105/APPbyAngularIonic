@@ -48,7 +48,7 @@
 
 //创建项目模块，引入ionic模块
 var m1 = angular.module("pro",["ionic"]);
-m1.controller("general",["$scope","$state",function($scope,$state){
+m1.controller("general",["$scope","$state","$ionicPlatform","$location",function($scope,$state,$ionicPlatform,$location){
 	//设置打开就是“习惯页面”
 	$state.go("habit");
 }])
@@ -77,7 +77,7 @@ m1.config(function($stateProvider){
 		templateUrl:"temp/addHabit.html",
 		controller:"addHabitController"
 	}).state("editHabit",{
-		url:"/editHabit",
+		url:"index/editHabit",
 		templateUrl:"temp/editHabit.html",
 		controller:"editHabitController"
 	}).state("search",{
@@ -196,11 +196,12 @@ m1.controller("myhabitDeController",["$scope","$http","$state","$rootScope","$st
 
 
 //编辑习惯控制器
-m1.controller("editHabitController",["$scope","$state","$http","$ionicPopup",function($scope,$state,$http,$ionicPopup){
+m1.controller("editHabitController",["$scope","$state","$http","$ionicPopup","$rootScope",function($scope,$state,$http,$ionicPopup,$rootScope){
 	//点击完成，回到习惯页面
 	$scope.editComplete = function(){
 		$state.go("habit")
 	}
+	$rootScope.mockdata();
 	//展示数据
 	$http({
 		url:"http://g.cn",
@@ -210,10 +211,6 @@ m1.controller("editHabitController",["$scope","$state","$http","$ionicPopup",fun
 		$scope.items = data.array;
 	});
 	
-//	$scope.shouldShowDelete = true;
-//	$scope.shouldShowReorder = true;
-//	$scope.listCanSwipe = true
-//	$scope.items = $scope.hibatList;
 	//设置删除按钮是否显示
 	$scope.data = {
 	   showDelete: true,
@@ -263,7 +260,7 @@ m1.controller("editHabitController",["$scope","$state","$http","$ionicPopup",fun
 }])
 
 //添加习惯 页面的控制器
-m1.controller("addHabitController",["$scope","$state","$http","$rootScope","$ionicNavBarDelegate",function($scope,$state,$http,$rootScope,$ionicNavBarDelegate){
+m1.controller("addHabitController",["$scope","$state","$http","$rootScope","$ionicNavBarDelegate","$ionicPlatform",function($scope,$state,$http,$rootScope,$ionicNavBarDelegate,$ionicPlatform){
 	//将$state服务赋给变量$state,便于在页面中使用
 	
 	$scope.$state = $state;
@@ -298,7 +295,6 @@ m1.controller("addHabitController",["$scope","$state","$http","$rootScope","$ion
 			$scope.allHabitList = data.array;
 		})
 	}
-
 }])
 //习惯详情页面
 m1.controller("haibitDetailController",["$scope","$state","$http","$ionicPopup","$stateParams",function($scope,$state,$http,$ionicPopup,$stateParams){
@@ -353,7 +349,6 @@ m1.controller("searchController",["$scope","$state","$http","$ionicPopup","$root
 //				//如果请求到的数据为0，就阻止无限滚动
 				$scope.ismore = false;
 			}
-//console.log(data)
 			//停止广播
 			$scope.$broadcast('scroll.infiniteScrollComplete');
 		})
@@ -379,6 +374,40 @@ m1.controller("myController",["$scope","$state","$http","$ionicPopup","$rootScop
 		console.log(data.array)
 		$scope.myhabitList = data.array;
 	})
+	
+	//下拉刷新
+	$scope.doRefresh = function() {
+		console.log("下拉刷新")
+		$http({
+			method:"get",
+			url:"http://g.cn",
+		}).success(function(data){
+			$scope.myhabitList = data.array;
+			$scope.$broadcast('scroll.refreshComplete');
+		})
+	};
+	
+	$scope.ismore = true;
+	$scope.loadMore = function() {
+	 	console.log("上拉加载")
+	    $http({
+			method:"get",
+			url:"http://g.cn",
+		}).success(function(data){
+			console.log(data.array);
+			
+			if(data.array.length > 0){
+				$scope.myhabitList = $scope.myhabitList.concat(data.array);	
+			}else{
+//				//如果请求到的数据为0，就阻止无限滚动
+				$scope.ismore = false;
+			}
+			//停止广播
+			$scope.$broadcast('scroll.infiniteScrollComplete');
+		})
+	};
+	
+	
 }])
 
 

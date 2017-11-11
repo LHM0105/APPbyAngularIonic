@@ -7,6 +7,9 @@
 		</ul>
 	</ion-header-bar>
 	<ion-content style="background: #F2F1EF;margin-top: 5px;">
+		<!--下拉刷新-->
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
+		</ion-refresher>
 		<div class="adynamic" ng-repeat="data in commontList track by $index">
 			<div class="adynamicTit">
 				<div class="photobox">
@@ -33,18 +36,13 @@
 				</ul>
 			</div>
 		</div>
-			
+		<!--上拉加载-->
+		<ion-infinite-scroll on-infinite="loadMore()" distance="1%" ng-if="ismore">
+  		</ion-infinite-scroll>		
 	</ion-content>
 	
 	<!--底部-->
 	<ion-footer-bar class="footbox bar-light">
-		<!--<ul class="footlist">
-			<li class="foot-item foot-habit" ng-click="$state.go('habit')"><i></i><span>习惯</span></li>
-			<li class="foot-item foot-search" ng-click="$state.go('search')"><i class="active"></i><span>发现</span></li>
-			<li class="foot-item foot-message" ng-click="$state.go('message')"><i></i><span>消息</span></li>
-			<li class="foot-item foot-mine" ng-click="$state.go('my')"><i></i><span>我的</span></li>
-		</ul>-->
-		
 		<!--引用自定义模板标签-->
 		<!--？？？自定义模板标签，底部，每块内容的样式不完全相同，如何控制？？？-->
 		<foot-part style="width: 100%;"></foot-part>

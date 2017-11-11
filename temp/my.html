@@ -9,6 +9,10 @@
     
 	<!--内容区域-->
 	<ion-content style="background: #F2F1EF;">
+		<!--下拉刷新-->
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
+		</ion-refresher>
+		
 		<div class="my_userbox">
 			<div class="topbox">
 				<div class="photo">
@@ -33,6 +37,9 @@
 				<img src="img/img{{data.imgsrc}}.jpg" width="100%" height="100%" />
 			</div>
 		</div>
+		<!--上拉加载-->
+		<ion-infinite-scroll on-infinite="loadMore()" distance="1%" ng-if="ismore">
+  		</ion-infinite-scroll>	
 	</ion-content>
 	
 	<!--底部-->

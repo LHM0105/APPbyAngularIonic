@@ -7,6 +7,10 @@
 		</ul>
 	</ion-header-bar>
 	<ion-content style="background: #F2F1EF;margin-top: 5px;">
+		<!--下拉刷新-->
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
+		</ion-refresher>
+		
 		<div class="adynamic" ng-repeat="data in commontList track by $index">
 			<div class="adynamicTit">
 				<div class="photobox">
@@ -33,7 +37,9 @@
 				</ul>
 			</div>
 		</div>
-			
+		<!--上拉加载-->
+		<ion-infinite-scroll on-infinite="loadMore()" distance="1%" ng-if="ismore">
+  		</ion-infinite-scroll>		
 	</ion-content>
 	
 	<!--底部-->
